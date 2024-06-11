@@ -1,3 +1,6 @@
 # Description
 
-Python code for the Taylor Series and Lagrange Polynomials using SymPy.
+Python code using SymPy for:
+* Taylor Series
+* Lagrange Polynomials
+* Cubic splines
