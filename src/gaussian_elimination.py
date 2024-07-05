@@ -73,7 +73,7 @@ def eliminacion_gaussiana(A: np.ndarray) -> np.ndarray:
         # --- Eliminación: loop por fila
         for j in range(i + 1, n):
             m = A[j, i] / A[i, i]
-            A[j, :] = A[j, :] - m * A[i, :]
+            A[j, i:] = A[j, i:] - m * A[i, i:]
 
         logging.info(f"\n{A}")
 
