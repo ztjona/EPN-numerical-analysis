@@ -1,1 +1,2 @@
 from .gaussian_elimination import eliminacion_gaussiana
+from .gaussian_elimination import gauss_jordan
