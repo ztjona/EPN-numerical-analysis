@@ -66,6 +66,7 @@ def eliminacion_gaussiana(A: np.ndarray) -> np.ndarray:
 
         if p != i:
             # swap rows
+            logging.debug(f"Intercambiando filas {i} y {p}")
             _aux = A[i, :].copy()
             A[i, :] = A[p, :].copy()
             A[p, :] = _aux
@@ -92,3 +93,73 @@ def eliminacion_gaussiana(A: np.ndarray) -> np.ndarray:
         solucion[i] = (A[i, n] - suma) / A[i, i]
 
     return solucion
+
+
+# ####################################################################
+def descomposicion_LU(A: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Realiza la descomposición LU de una matriz cuadrada A.
+    [IMPORTANTE] No se realiza pivoteo.
+
+    ## Parameters
+
+    ``A``: matriz cuadrada de tamaño n-by-n.
+
+    ## Return
+
+    ``L``: matriz triangular inferior.
+
+    ``U``: matriz triangular superior. Se obtiene de la matriz ``A`` después de aplicar la eliminación gaussiana.
+    """
+
+    A = np.array(
+        A, dtype=float
+    )  # convertir en float, porque si no, puede convertir como entero
+
+    assert A.shape[0] == A.shape[1], "La matriz A debe ser cuadrada."
+    n = A.shape[0]
+
+    L = np.zeros((n, n), dtype=float)
+
+    for i in range(0, n):  # loop por columna
+
+        # --- deterimnar pivote
+        if A[i, i] == 0:
+            raise ValueError("No existe solución única.")
+
+        # --- Eliminación: loop por fila
+        L[i, i] = 1
+        for j in range(i + 1, n):
+            m = A[j, i] / A[i, i]
+            A[j, i:] = A[j, i:] - m * A[i, i:]
+
+            L[j, i] = m
+
+        logging.info(f"\n{A}")
+
+    if A[n - 1, n - 1] == 0:
+        raise ValueError("No existe solución única.")
+
+    return L, A
+
+
+# ####################################################################
+def resolver_LU(L: np.ndarray, U: np.ndarray, b: np.ndarray) -> np.ndarray:
+    """Resuelve un sistema de ecuaciones lineales mediante la descomposición LU.
+
+    ## Parameters
+
+    ``L``: matriz triangular inferior.
+
+    ``U``: matriz triangular superior.
+
+    ``b``: vector de términos independientes.
+
+    ## Return
+
+    ``solucion``: vector con la solución del sistema de ecuaciones lineales.
+
+    """
+
+    # Completar
+    logging.info("Completar!")
+    return
