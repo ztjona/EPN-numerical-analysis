@@ -5,3 +5,5 @@ from .linear_sist_methods import (
     matriz_aumentada,
     separar_m_aumentada,
 )
+
+from .iterative_methods import gauss_jacobi, gauss_seidel  # type: ignore
