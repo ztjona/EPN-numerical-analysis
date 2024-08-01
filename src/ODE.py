@@ -64,10 +64,11 @@ def ODE_euler(
     ts = [t]
     ys = [y_t0]
 
-    for i in range(N):
+    for _ in range(N):
         y = ys[-1]
-        t += h
-        ts.append(t)
         y += h * f(t, y)
         ys.append(y)
+
+        t += h
+        ts.append(t)
     return ys, ts, h
